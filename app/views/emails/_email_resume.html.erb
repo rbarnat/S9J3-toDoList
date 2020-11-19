@@ -3,7 +3,7 @@
     <% if email.read %>
       <%= link_to email.object, email_path(email.id), id: "email-resume-link-#{email.id}", remote: true %>
     <% else %>
-      <strong>
+      <strong id="email-resume-strong-<%= email.id %>">
         <%= link_to email.object, email_path(email.id), id: "email-resume-link-#{email.id}", remote: true %>
       </strong>
     <% end %>

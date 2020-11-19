@@ -2,7 +2,7 @@ class EmailsController < ApplicationController
   require 'faker'
 
   def index
-    @emails = Email.all
+    @emails = Email.all.sort { |x, y| x.created_at <=> y.created_at }
   end
 
   def show

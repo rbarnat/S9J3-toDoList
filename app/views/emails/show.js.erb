@@ -36,10 +36,14 @@ btnGroup.appendChild(linkDelete);
 // METTRE LE MAIL DANS LA LISTE EN LU
 var linkEmail = document.querySelector('#email-resume-link-<%= @email.id %>');
 console.log(linkEmail);
-var strongLinkEmail = linkEmail.parentNode;
-var linkEmailParent = strongLinkEmail.parentNode;
+var strongLinkEmail = document.querySelector('#email-resume-strong-<%= @email.id %>');
+//var strongLinkEmail = linkEmail.parentNode;
+if (strongLinkEmail)
+{
+  var linkEmailParent = strongLinkEmail.parentNode;
+  linkEmailParent.replaceChild(linkEmail, strongLinkEmail)
+  console.log(linkEmailParent);
+}
 
-linkEmailParent.replaceChild(linkEmail, strongLinkEmail)
-console.log(linkEmailParent);
 
 
