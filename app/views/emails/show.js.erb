@@ -25,15 +25,21 @@ btnDelete.appendChild(btnDeleteContent);
 btnDelete.classList.add("btn");
 btnDelete.classList.add("btn-sm");
 btnDelete.classList.add("btn-outline-danger");
-console.log(btnDelete);
 var linkDelete = document.createElement("a");
 linkDelete.setAttribute("href", "<%= email_path(@email) %>");
 linkDelete.setAttribute("data-method", "delete");
 linkDelete.setAttribute("data-confirm", "Etes vous sur de vouloir suprimer cet email ?");
 linkDelete.setAttribute("data-remote", "true");
-console.log(linkDelete);
 linkDelete.appendChild(btnDelete);
-console.log(linkDelete);
 btnGroup.appendChild(linkDelete);
+
+// METTRE LE MAIL DANS LA LISTE EN LU
+var linkEmail = document.querySelector('#email-resume-link-<%= @email.id %>');
+console.log(linkEmail);
+var strongLinkEmail = linkEmail.parentNode;
+var linkEmailParent = strongLinkEmail.parentNode;
+
+linkEmailParent.replaceChild(linkEmail, strongLinkEmail)
+console.log(linkEmailParent);
 
 

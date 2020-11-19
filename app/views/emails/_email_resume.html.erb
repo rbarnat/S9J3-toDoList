@@ -1,10 +1,10 @@
-<tr id="email-resume-<%= email.id %>">
-  <td>
+<tr id="email-resume-tr-<%= email.id %>">
+  <td id="email-resume-td-<%= email.id %>">
     <% if email.read %>
-      <%= link_to email.object, email_path(email.id), remote: true %>
+      <%= link_to email.object, email_path(email.id), id: "email-resume-link-#{email.id}", remote: true %>
     <% else %>
       <strong>
-        <%= link_to email.object, email_path(email.id), remote: true %>
+        <%= link_to email.object, email_path(email.id), id: "email-resume-link-#{email.id}", remote: true %>
       </strong>
     <% end %>
   </td>
