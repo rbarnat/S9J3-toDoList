@@ -7,7 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+Faker::Config.locale = 'fr'
 
+Task.destroy_all
+Email.destroy_all
 
 3.times do
   my_category = Category.create(title: Faker::Book.genre)
@@ -21,8 +24,13 @@ require 'faker'
 end
 
 15.times do
+  # sentence_array = Faker::Lorem.paragraph(sentence_count: 20)
+  # my_body = ""
+  # sentence_array.each {|s| my_body += s}
+  # puts my_body
+  my_body = Faker::Lorem.paragraph
   my_mail = Email.new(object: Faker::Book.title,
-                      body: Faker::Lorem.paragraphs,
+                      body: my_body,
                       read: [true, false].sample)
   my_mail.save
 end

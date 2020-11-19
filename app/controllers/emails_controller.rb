@@ -7,6 +7,15 @@ class EmailsController < ApplicationController
 
   def show
     @email = Email.find(params[:id])
+
+    respond_to do |format|
+      format.html do 
+        #code en cas de requête classique 
+      end
+      format.js do
+        #code en cas de requête AJAX
+      end
+    end
   end
 
   def new
@@ -15,17 +24,18 @@ class EmailsController < ApplicationController
 
   def create
     @email = Email.new( object: Faker::Book.title,
-                        body: Faker::Lorem.paragraphs,
+                        body: Faker::Lorem.paragraph,
                         read: false)
+
+    if @email.save
+      flash[:notice] = "Email received"
+    else
+      flash[:notice] = "Please try again"
+    end
 
     respond_to do |format|
       format.html do 
         #code en cas de requête classique 
-        if @email.save
-          flash[:notice] = "Email received"
-        else
-          flash[:notice] = "Please try again"
-        end
         redirect_to root_path
       end
       format.js do

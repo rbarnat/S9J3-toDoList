@@ -17,7 +17,7 @@
                 <th>Objet</th>
               </tr>
             </thead>
-            <tbody id="#email-resume">
+            <tbody id="email-resume">
               <% @emails.each do |email|  %>
                 <%= render 'email_resume', email: email%>
               <% end %>
@@ -31,14 +31,12 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h2>Email sélectionné</h2>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Marquer comme non-lu</button>
-            <button class="btn btn-sm btn-outline-danger">Suprimer</button>
+          <div class="btn-group mr-2" id="current-email-buttons">
           </div>
         </div>
       </div>
-      <h4>Objet de l'email</h4>
-      <p>Corps de l'email</p>
+      <h4 id="current-email-subject"></h4>
+      <p id="current-email-content"></p>
 
     </main>
   </div>

@@ -1,0 +1,39 @@
+// AFFICHAGE OBJET ET CONTENU
+document.getElementById('current-email-subject').textContent = "<%= @email.object %>";
+document.getElementById('current-email-content').textContent = "<%= @email.body %>";
+
+//PARENT DES BOUTONS
+var btnGroup = document.getElementById('current-email-buttons');
+
+// RAZ DE TOUS LES BOUTONS
+btnGroup.querySelectorAll('*').forEach(n => n.remove());
+
+
+// BOUTON NON-LU
+var btnUnread = document.createElement("button");
+var btnUnreadContent = document.createTextNode('Marquer comme non-lu');
+btnUnread.appendChild(btnUnreadContent);
+btnUnread.classList.add("btn");
+btnUnread.classList.add("btn-sm");
+btnUnread.classList.add("btn-outline-secondary");
+btnGroup.appendChild(btnUnread);
+
+// BOUTON SUPRIMER
+var btnDelete = document.createElement("button");
+var btnDeleteContent = document.createTextNode('Suprimer');
+btnDelete.appendChild(btnDeleteContent);
+btnDelete.classList.add("btn");
+btnDelete.classList.add("btn-sm");
+btnDelete.classList.add("btn-outline-danger");
+console.log(btnDelete);
+var linkDelete = document.createElement("a");
+linkDelete.setAttribute("href", "<%= email_path(@email) %>");
+linkDelete.setAttribute("data-method", "delete");
+linkDelete.setAttribute("data-confirm", "Etes vous sur de vouloir suprimer cet email ?");
+linkDelete.setAttribute("data-remote", "true");
+console.log(linkDelete);
+linkDelete.appendChild(btnDelete);
+console.log(linkDelete);
+btnGroup.appendChild(linkDelete);
+
+

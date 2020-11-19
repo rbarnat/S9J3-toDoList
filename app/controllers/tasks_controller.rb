@@ -8,15 +8,17 @@ class TasksController < ApplicationController
       @task = Task.new(task_params)
       @category = Category.find(category_params)
       @task.category = @category
+
+      
+      if @task.save
+        flash[:notice] = "Task created"
+      else
+        flash[:notice] = "Please try again"
+      end
   
       respond_to do |format|
         format.html do 
           #code en cas de requête classique 
-          if @task.save
-            flash[:notice] = "Task created"
-          else
-            flash[:notice] = "Please try again"
-          end
           redirect_to root_path
         end
         format.js do
