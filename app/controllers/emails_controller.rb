@@ -1,14 +1,37 @@
 class EmailsController < ApplicationController
+  require 'faker'
+
   def index
+    @emails = Email.all
   end
 
   def show
+    @email = Email.find(params[:id])
   end
 
   def new
+
   end
 
   def create
+    @email = Email.new( object: Faker::Book.title,
+                        body: Faker::Lorem.paragraphs,
+                        read: false)
+
+    respond_to do |format|
+      format.html do 
+        #code en cas de requête classique 
+        if @email.save
+          flash[:notice] = "Email received"
+        else
+          flash[:notice] = "Please try again"
+        end
+        redirect_to root_path
+      end
+      format.js do
+        #code en cas de requête AJAX
+      end
+    end
   end
 
   def edit
@@ -18,5 +41,18 @@ class EmailsController < ApplicationController
   end
 
   def destroy
+    @email = Email.find(params[:id])
+    @email.destroy
+    
+    respond_to do |format|
+      format.html do 
+        #code en cas de requête classique 
+        flash[:notice] = "Email destroyed"
+        redirect_to root_path
+      end
+      format.js do
+        #code en cas de requête AJAX
+      end
+    end
   end
 end
