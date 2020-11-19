@@ -1,10 +1,7 @@
 <ul>
   <% @tasks.each do |task|  %>
     <li>
-      <%= task.title %>,
-      "Deadline : " <%=  task.deadline.strftime("%D")  %>
-       <%= link_to "Edit this task", edit_task_path(task) %>
-       <i class="fas fa-eye"></i>
+      <%= render 'task', task: task%>
     </li>
   <% end %>
 </ul>
