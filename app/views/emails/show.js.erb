@@ -17,6 +17,7 @@ btnUnread.classList.add("btn");
 btnUnread.classList.add("btn-sm");
 btnUnread.classList.add("btn-outline-secondary");
 var linkUnread = document.createElement("a");
+linkUnread.setAttribute("id", "current-email-unread-link");
 linkUnread.setAttribute("href", "<%= email_path(@email) %>");
 linkUnread.setAttribute("data-method", "put");
 // linkUnread.setAttribute("data-read", "<%= !@email.read %>");

@@ -1,22 +1,56 @@
-// METTRE LE MAIL DANS LA LISTE EN NON-LU ou LU
 var linkEmail = document.querySelector('#email-resume-link-<%= @email.id %>');
-console.log(linkEmail);
 var strongLinkEmail = document.querySelector('#email-resume-strong-<%= @email.id %>');
-console.log(strongLinkEmail);
-//var strongLinkEmail = linkEmail.parentNode;
+
 
 //Si le mail est non-lu -> mettre en lu
 if (strongLinkEmail)
 {
-  var linkEmailParent = strongLinkEmail.parentNode;
-  linkEmailParent.replaceChild(linkEmail, strongLinkEmail)
+  var linkEmailParent1 = strongLinkEmail.parentNode;
+  // METTRE LE MAIL DANS LA LISTE EN LU
+  linkEmailParent1.replaceChild(linkEmail, strongLinkEmail)
+  console.log(linkEmailParent1);
 }
 //Si le mail est lu -> mettre en non-lu
 else{
   var newStrongLinkEmail = document.createElement("strong");
+  newStrongLinkEmail.setAttribute("id", "email-resume-strong-<%= @email.id %>");
   var linkEmail2 = linkEmail.cloneNode(true);
   newStrongLinkEmail.appendChild(linkEmail2);
-  var linkEmailParent = linkEmail.parentNode;
-  linkEmailParent.replaceChild(newStrongLinkEmail, linkEmail);
+  var linkEmailParent2 = linkEmail.parentNode;
+  // METTRE LE MAIL DANS LA LISTE EN NON-LU
+  linkEmailParent2.replaceChild(newStrongLinkEmail, linkEmail);
+  console.log(linkEmailParent2);
 }
-console.log(linkEmailParent);
+
+
+
+var btnUnread = linkUnread.getElementsByTagName('button')[0];
+var linkUnread = document.getElementById('current-email-unread-link');
+
+if (linkUnread.dataset.params == "read=false"){
+  // MODIFIER LE TEXTE DU LIEN 'MARQUER COMME NON-LU' -> 'MARQUER COMME LU'
+  btnUnread.textContent = 'Marquer comme lu';
+
+  // MODIFIER LE LIEN 'METTRE EN NON-LU' -> 'METTRE EN LU'
+  linkUnread.setAttribute("data-params", "read=true");
+}
+else{
+  // MODIFIER LE TEXTE DU LIEN 'MARQUER COMME LU' -> 'MARQUER COMME NON-LU'
+  btnUnread.textContent = 'Marquer comme non-lu';
+
+  // MODIFIER LE LIEN 'METTRE EN NON-LU' -> 'METTRE EN LU'
+  linkUnread.setAttribute("data-params", "read=false");
+}
+console.log(linkUnread);
+
+
+
+
+
+
+
+
+
+
+
+
