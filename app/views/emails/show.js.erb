@@ -16,7 +16,14 @@ btnUnread.appendChild(btnUnreadContent);
 btnUnread.classList.add("btn");
 btnUnread.classList.add("btn-sm");
 btnUnread.classList.add("btn-outline-secondary");
-btnGroup.appendChild(btnUnread);
+var linkUnread = document.createElement("a");
+linkUnread.setAttribute("href", "<%= email_path(@email) %>");
+linkUnread.setAttribute("data-method", "put");
+// linkUnread.setAttribute("data-read", "<%= !@email.read %>");
+linkUnread.setAttribute("data-params", "read=<%= !@email.read %>");
+linkUnread.setAttribute("data-remote", "true");
+linkUnread.appendChild(btnUnread);
+btnGroup.appendChild(linkUnread);
 
 // BOUTON SUPRIMER
 var btnDelete = document.createElement("button");
@@ -29,20 +36,19 @@ var linkDelete = document.createElement("a");
 linkDelete.setAttribute("href", "<%= email_path(@email) %>");
 linkDelete.setAttribute("data-method", "delete");
 linkDelete.setAttribute("data-confirm", "Etes vous sur de vouloir suprimer cet email ?");
+
 linkDelete.setAttribute("data-remote", "true");
 linkDelete.appendChild(btnDelete);
 btnGroup.appendChild(linkDelete);
 
 // METTRE LE MAIL DANS LA LISTE EN LU
 var linkEmail = document.querySelector('#email-resume-link-<%= @email.id %>');
-console.log(linkEmail);
 var strongLinkEmail = document.querySelector('#email-resume-strong-<%= @email.id %>');
 //var strongLinkEmail = linkEmail.parentNode;
 if (strongLinkEmail)
 {
   var linkEmailParent = strongLinkEmail.parentNode;
   linkEmailParent.replaceChild(linkEmail, strongLinkEmail)
-  console.log(linkEmailParent);
 }
 
 

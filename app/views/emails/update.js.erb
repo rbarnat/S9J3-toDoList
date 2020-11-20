@@ -1,0 +1,22 @@
+// METTRE LE MAIL DANS LA LISTE EN NON-LU ou LU
+var linkEmail = document.querySelector('#email-resume-link-<%= @email.id %>');
+console.log(linkEmail);
+var strongLinkEmail = document.querySelector('#email-resume-strong-<%= @email.id %>');
+console.log(strongLinkEmail);
+//var strongLinkEmail = linkEmail.parentNode;
+
+//Si le mail est non-lu -> mettre en lu
+if (strongLinkEmail)
+{
+  var linkEmailParent = strongLinkEmail.parentNode;
+  linkEmailParent.replaceChild(linkEmail, strongLinkEmail)
+}
+//Si le mail est lu -> mettre en non-lu
+else{
+  var newStrongLinkEmail = document.createElement("strong");
+  var linkEmail2 = linkEmail.cloneNode(true);
+  newStrongLinkEmail.appendChild(linkEmail2);
+  var linkEmailParent = linkEmail.parentNode;
+  linkEmailParent.replaceChild(newStrongLinkEmail, linkEmail);
+}
+console.log(linkEmailParent);

@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   # root to: "home#index"
   resources :tasks, except: [:show]
   root to: "emails#index"
-  resources :emails, only: [:index, :show, :create, :destroy]
+  resources :home, only: [:index]
+  resources :emails, only: [:index, :show, :create, :edit, :update, :destroy]
 end

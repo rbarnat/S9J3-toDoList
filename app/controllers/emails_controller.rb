@@ -46,9 +46,26 @@ class EmailsController < ApplicationController
   end
 
   def edit
+    @email = Email.find(params[:id])
   end
 
   def update
+    puts params
+    @email = Email.find(params[:id])
+    @email.update(task_params)
+    puts task_params
+    puts @email.read
+
+    respond_to do |format|
+      format.html do 
+        #code en cas de requête classique 
+        redirect_to root_path
+        flash[:notice] = "Email edited"
+      end
+      format.js do
+        #code en cas de requête AJAX
+      end
+    end
   end
 
   def destroy
@@ -65,5 +82,11 @@ class EmailsController < ApplicationController
         #code en cas de requête AJAX
       end
     end
+  end
+
+  private
+  
+  def task_params
+    params.permit(:id, :object, :body, :read)
   end
 end
